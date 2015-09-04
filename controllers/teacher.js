@@ -1,7 +1,7 @@
 exports.find = function(req, res){
 	res.send('Find a teacher');
 };
-exports.add = function(req, res){
+exports.insert = function(req, res){
 	res.send('Create a teacher');
 };
 exports.update = function(req, res){
