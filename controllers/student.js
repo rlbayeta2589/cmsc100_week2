@@ -1,6 +1,7 @@
 var db = require(__dirname+'/../lib/mysql');
 
 exports.find = function(req, res, next){
+	console.log(req.ip+" -- find()");
 	db.query('select * from student',
 		function(err,rows){
 			if(err) return next(err);
@@ -9,6 +10,7 @@ exports.find = function(req, res, next){
 };
 
 exports.findOne = function(req, res, next){
+	console.log(req.ip+" -- findOne()");	
 	db.query('select * from student where studNo=?',[req.params.id],
 		function(err,rows){
 			if(err) return next(err);
@@ -20,6 +22,7 @@ exports.findOne = function(req, res, next){
 };
 
 exports.update = function(req, res, next){
+	console.log(req.ip+" -- update()");	
 	db.query('update student set ? where studNo=?',[req.body,req.params.id],
 		function(err,rows){
 			if(err) return next(err);
@@ -30,6 +33,7 @@ exports.update = function(req, res, next){
 	});
 };
 exports.insert = function(req, res, next){
+	console.log(req.ip+" -- insert()");	
 	db.query('insert into student values(?,?,?)', [req.body.studNo,req.body.name,req.body.bdate],
 		function(err,rows){
 			if(err) return next(err);
@@ -38,6 +42,7 @@ exports.insert = function(req, res, next){
 };
 
 exports.remove = function(req, res, next){
+	console.log(req.ip+" -- remove()");	
 	db.query('delete from student where studNo=?',[req.params.id],
 		function(err,rows){
 			if(err) return next(err);
