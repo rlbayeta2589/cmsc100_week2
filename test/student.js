@@ -35,15 +35,20 @@ describe('student',function(){
 			request(url)
 				.post('/students')
 				.send({
-					'studNo':'2015-12345',
-					'name':'Marie',
+					'studNo':'2016-10101',
+					'name':'Luigi',
 					'bdate':'1997-11-12'
 				})
 				.end(function(err,res){
 					if(err) throw err;
 					res.should.have.status(200);
 					res.body.should.be.an.instanceOf(Object);
-					done();
+					res.body.should.have.properties({
+						studNo : '2016-10101',
+						name : 'Luigi',
+						bdate : '1997-11-12'
+					});
+				done();
 				});
 		});
 	});
